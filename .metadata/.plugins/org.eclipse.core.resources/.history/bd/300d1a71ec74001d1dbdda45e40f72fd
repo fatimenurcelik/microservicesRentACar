@@ -1,0 +1,32 @@
+package com.kodlamaio.invoiceService.business.concretes;
+
+import org.springframework.stereotype.Service;
+
+import com.kodlamaio.common.events.PaymentCreatedEvent;
+import com.kodlamaio.invoiceService.business.abstracts.InvoiceService;
+import com.kodlamaio.invoiceService.dataAccess.InvoiceRepository;
+import com.kodlamaio.invoiceService.entities.Invoice;
+
+import lombok.AllArgsConstructor;
+
+
+
+@Service
+@AllArgsConstructor
+public  class InvoiceManager implements InvoiceService {
+
+	private InvoiceRepository invoiceRepository;
+
+	@Override
+	public Invoice add(PaymentCreatedEvent paymentCreatedEvent) {
+		Invoice invoice=new Invoice();
+		invoice.setRentalId(paymentCreatedEvent.getRentalId());
+		
+		Invoice result= this.invoiceRepository.save(invoice);
+		return null;
+	}
+
+
+	
+	
+}

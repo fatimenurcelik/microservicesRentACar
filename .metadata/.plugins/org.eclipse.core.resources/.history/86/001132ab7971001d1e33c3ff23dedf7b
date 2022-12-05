@@ -1,0 +1,5 @@
+package com.kodlamaio.rentalService.kafka;
+@Service
+public class RentalProducer {
+
+}

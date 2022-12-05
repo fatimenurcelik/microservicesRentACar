@@ -1,0 +1,7 @@
+package com.kodlamaio.common.utilities.mapping;
+
+import org.modelmapper.ModelMapper;
+
+public class ModelMapperManager extends ModelMapper{
+	
+}

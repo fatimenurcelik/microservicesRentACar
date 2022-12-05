@@ -1,0 +1,7 @@
+package com.kodlamaio.invoiceService.business.concretes;
+
+import com.kodlamaio.invoiceService.business.abstracts.InvoiceService;
+
+public class InvoiceManager implements InvoiceService {
+
+}

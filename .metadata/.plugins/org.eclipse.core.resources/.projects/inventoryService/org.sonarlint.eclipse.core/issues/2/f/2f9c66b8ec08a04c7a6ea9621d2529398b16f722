@@ -1,0 +1,10 @@
+
+h
+java:S1128"5Remove this unused import 'org.hibernate.sql.Update'.(‚Äşƒ8ŠÛü¿Ì0HìRMINORZ
+CODE_SMELL
+r
+java:S2789Q"FEnsure this "Optional" could never be null and remove this null-check.(‚‹„ù8¤·Á¥Ì0HÅRMAJORZBUG
+p
+java:S2583Q"DChange this condition so that it does not always evaluate to "false"(‚‹„ù8Õ©¨§Ì0HÂRMAJORZBUG
+|
+java:S3655)"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.(ª½øà8ıî¥Ì0HÀRMAJORZBUG

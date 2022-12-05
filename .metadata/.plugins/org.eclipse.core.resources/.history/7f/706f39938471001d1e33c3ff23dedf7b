@@ -1,0 +1,19 @@
+package com.kodlamaio.rentalService.requests;
+
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
+public class CreateRentalRequest {
+	@NotNull
+	private String carId;
+	
+	@NotNull
+	@Min(1)
+	private int rentedForDays;
+	@NotNull
+	@Min(100)
+	private double dailyPrice;
+//	@NotNull
+//	@Min(100)
+//	private double totalPrice;
+}

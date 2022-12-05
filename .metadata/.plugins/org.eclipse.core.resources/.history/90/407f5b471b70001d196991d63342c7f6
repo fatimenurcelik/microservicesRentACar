@@ -1,0 +1,5 @@
+package com.kodlamaio.inventoryService.business.constants;
+
+public class MessagesForCar {
+	public static final String BrandDeleted = "Brand is Deleted";
+}

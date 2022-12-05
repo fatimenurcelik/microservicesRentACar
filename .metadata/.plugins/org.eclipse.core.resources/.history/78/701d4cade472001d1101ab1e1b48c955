@@ -1,0 +1,5 @@
+package com.kodlamaio.paymentService.dataAccess;
+
+public interface PaymentRepository {
+
+}

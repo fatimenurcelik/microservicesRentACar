@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
+		<item key="casesensitive" value="false"/>
+		<item key="wholeword" value="false"/>
+		<item key="isRegEx" value="false"/>
+		<item key="selection" value="/spring.kafka.consumer.group-id: inventory2"/>
+		<list key="findhistory">
+			<item value="getTotalPrice"/>
+			<item value="carClient"/>
+			<item value="sleut"/>
+			<item value="model"/>
+			<item value="kafkaTemplate"/>
+			<item value="spring-cloud-dependencies"/>
+			<item value="updateCarState"/>
+			<item value="getLogger"/>
+		</list>
+		<list key="replacehistory">
+		</list>
+	</section>
+</section>

@@ -1,0 +1,5 @@
+package com.kodlamaio.paymentService.business.responses;
+
+public class CreatePaymentResponse {
+
+}

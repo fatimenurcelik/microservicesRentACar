@@ -1,0 +1,21 @@
+package com.kodlamaio.common.utilities.mapping;
+
+import org.modelmapper.ModelMapper;
+
+public class ModelMapperManager implements ModelMapperService{
+	
+	private ModelMapper modelMapper;
+
+	@Override
+	public ModelMapper forRequest() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ModelMapper forResponse() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+}

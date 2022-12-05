@@ -1,0 +1,12 @@
+package com.kodlamaio.rentalService.business.concretes;
+
+import org.springframework.stereotype.Service;
+
+import com.kodlamaio.rentalService.business.abstracts.RentalService;
+
+import lombok.AllArgsConstructor;
+@Service
+@AllArgsConstructor
+public class RentalManager implements RentalService{
+	private RentalService rentalService;
+}

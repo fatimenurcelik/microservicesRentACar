@@ -1,0 +1,18 @@
+package com.kodlamaio.rentalService.business.abstracts;
+
+import org.springframework.web.bind.annotation.PathVariable;
+
+import com.kodlamaio.rentalService.business.requests.CreateRentalRequest;
+import com.kodlamaio.rentalService.business.requests.UpdateRentalRequest;
+import com.kodlamaio.rentalService.business.responses.CreateRentalResponse;
+import com.kodlamaio.rentalService.business.responses.UpdateRentalConditionResponse;
+import com.kodlamaio.rentalService.business.responses.UpdateRentalResponse;
+
+public interface RentalService {
+	CreateRentalResponse add(CreateRentalRequest createRentalRequest);
+	void delete(String id);
+	UpdateRentalResponse update(UpdateRentalRequest updateRentalRequest);
+	double getTotalPrice(@PathVariable String rentalId);
+	UpdateRentalConditionResponse updateRentalConditionResponse(String rentalId,int condition);
+//	PayMoneyRequest payMoney(PayMoneyRequest payMoneyRequest);
+}

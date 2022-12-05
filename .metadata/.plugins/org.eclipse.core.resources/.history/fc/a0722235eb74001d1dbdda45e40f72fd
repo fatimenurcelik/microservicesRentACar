@@ -1,0 +1,5 @@
+package com.kodlamaio.invoiceService.entities;
+
+public class Invoice {
+
+}

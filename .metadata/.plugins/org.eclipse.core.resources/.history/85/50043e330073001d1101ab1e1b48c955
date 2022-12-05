@@ -1,0 +1,5 @@
+package com.kodlamaio.paymentService.kafka;
+
+public class PaymentProducer {
+
+}

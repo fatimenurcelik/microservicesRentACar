@@ -1,0 +1,7 @@
+
+p
+java:S2583P"DChange this condition so that it does not always evaluate to "false"(ÑÇêï8é‹á¦Ì0H°RMAJORZBUG
+r
+java:S2789P"FEnsure this "Optional" could never be null and remove this null-check.(ÑÇêï8é‹á¦Ì0H³RMAJORZBUG
+
+java:S3655*"PCall "Optional#isPresent()" or "!Optional#isEmpty()" before accessing the value.( ¶ö÷ùÿÿÿÿ8ÔÙ–¥Ì0H“RMAJORZBUG

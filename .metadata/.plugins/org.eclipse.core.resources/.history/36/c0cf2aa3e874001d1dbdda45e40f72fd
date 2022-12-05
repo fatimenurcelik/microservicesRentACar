@@ -1,0 +1,5 @@
+package com.kodlamaio.invoiceService.kafka;
+
+public class InvoiceProducer {
+
+}

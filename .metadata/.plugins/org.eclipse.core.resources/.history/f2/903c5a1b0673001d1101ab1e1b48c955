@@ -1,0 +1,99 @@
+package com.kodlamaio.rentalService.business.concretes;
+
+import java.time.LocalDate;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
+import com.kodlamaio.common.events.RentalCreatedEvent;
+import com.kodlamaio.common.events.RentalDeletedEvent;
+import com.kodlamaio.common.events.RentalUpdatedEvent;
+import com.kodlamaio.common.utilities.mapping.ModelMapperService;
+import com.kodlamaio.rentalService.business.abstracts.RentalService;
+import com.kodlamaio.rentalService.business.feignClient.CarClient;
+import com.kodlamaio.rentalService.business.requests.CreateRentalRequest;
+import com.kodlamaio.rentalService.business.requests.UpdateRentalRequest;
+import com.kodlamaio.rentalService.business.responses.CreateRentalResponse;
+import com.kodlamaio.rentalService.business.responses.UpdateRentalResponse;
+import com.kodlamaio.rentalService.dataAccess.RentalRepository;
+import com.kodlamaio.rentalService.entities.Rental;
+import com.kodlamaio.rentalService.kafka.RentalProducer;
+
+import lombok.AllArgsConstructor;
+@Service
+@AllArgsConstructor
+public class RentalManager implements RentalService{
+	private ModelMapperService modelMapperService;
+	private RentalRepository rentalRepository;
+	private RentalProducer rentalProducer;
+	private CarClient carClient;
+	
+	@Override
+	public CreateRentalResponse add(CreateRentalRequest createRentalRequest) {
+		
+		carClient.checkCarAvailabel(createRentalRequest.getCarId());
+		
+		Rental rental = modelMapperService.forRequest().map(createRentalRequest, Rental.class);
+		rental.setId(UUID.randomUUID().toString());
+		rental.setTotalPrice(createRentalRequest.getDailyPrice()*createRentalRequest.getRentedForDays());
+		
+		rentalRepository.save(rental);
+		
+		RentalCreatedEvent rentalCreatedEvent = new RentalCreatedEvent();
+		rentalCreatedEvent.setCarId(rental.getCarId());
+		rentalCreatedEvent.setMessage("Rental Created");
+		
+		this.rentalProducer.sendMessage(rentalCreatedEvent);
+		
+		CreateRentalResponse response = modelMapperService.forResponse().map(rental, CreateRentalResponse.class);
+		return response;
+	}
+
+	@Override
+	public UpdateRentalResponse update(UpdateRentalRequest updateRentalRequest) {
+	//	checkIfRentalById(updateRentalRequest.getId());
+		//client.checkIfCarAvailable(updateRentalRequest.getCarId());
+		RentalUpdatedEvent rentalUpdatedEvent = new RentalUpdatedEvent();
+		
+		Rental rental = this.rentalRepository.findById(updateRentalRequest.getId()).get();
+		rentalUpdatedEvent.setOldCarId(rental.getCarId());
+		
+		//this.modelMapperService.forRequest().map(updateRentalRequest, Rental.class);
+		rental.setCarId(updateRentalRequest.getCarId());
+		rental.setDailyPrice(updateRentalRequest.getDailyPrice());
+		rental.setRentedForDays(updateRentalRequest.getRentedForDays());
+		rental.setDateStarted(LocalDate.now());
+		double totalPrice = updateRentalRequest.getDailyPrice() * updateRentalRequest.getRentedForDays();
+		rental.setTotalPrice(totalPrice);
+
+		Rental rentalUpdated = this.rentalRepository.save(rental);
+		
+		rentalUpdatedEvent.setNewCarId(rentalUpdated.getCarId());
+		rentalUpdatedEvent.setMessage("Rental Updated");
+		
+		this.rentalProducer.sendMessage(rentalUpdatedEvent);
+		
+		UpdateRentalResponse updateRentalResponse = this.modelMapperService.forResponse().map(rental, UpdateRentalResponse.class);
+		
+		return updateRentalResponse;
+	}
+	
+	@Override
+	public void delete(String id) {
+		
+		Rental rental= rentalRepository.findById(id).get();
+		
+		RentalDeletedEvent rentalDeletedEvent = new RentalDeletedEvent();
+		rentalDeletedEvent.setCarId(rental.getCarId());
+		rentalDeletedEvent.setMessage("Rental find. rental will deleted . . .");
+		this.rentalProducer.sendMessage(rentalDeletedEvent);
+		
+		rentalRepository.deleteById(id);
+	}
+
+	@Override
+	public double getTotalPrice(String rentalId) {
+		Rental rental = rentalRepository.getById(rentalId);
+		return rental.getDailyPrice() * rental.getRentedForDays();
+	}
+}

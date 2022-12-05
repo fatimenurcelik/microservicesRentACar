@@ -1,0 +1,11 @@
+package com.kodlamaio.rentalService.responses;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class CreateRentalResponse {
+
+}

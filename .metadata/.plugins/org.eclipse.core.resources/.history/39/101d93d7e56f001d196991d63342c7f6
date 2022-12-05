@@ -1,0 +1,8 @@
+package com.kodlamaio.inventoryService.api.controllers;
+
+@AllArgsConstructor
+@RestController
+@RequestMapping("/api/brands")
+public class BrandController {
+	
+}

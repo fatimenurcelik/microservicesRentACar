@@ -1,0 +1,21 @@
+package com.kodlamaio.invoiceService.business.concretes;
+
+import org.springframework.stereotype.Service;
+
+import com.kodlamaio.invoiceService.business.abstracts.InvoiceService;
+import com.kodlamaio.invoiceService.dataAccess.InvoiceRepository;
+
+import lombok.AllArgsConstructor;
+
+
+
+@Service
+@AllArgsConstructor
+public abstract class InvoiceManager implements InvoiceService {
+
+	private InvoiceRepository invoiceRepository;
+
+
+	
+	
+}

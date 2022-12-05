@@ -1,0 +1,5 @@
+package com.kodlamaio.invoiceService.business.abstracts;
+
+public interface InvoiceService {
+
+}

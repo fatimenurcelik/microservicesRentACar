@@ -1,0 +1,5 @@
+package com.kodlamaio.rentalService.responses;
+
+public class CreateRentalResponse {
+
+}

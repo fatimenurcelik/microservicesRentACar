@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move package &apos;com.kodlamaio.paymentService.dataAccess&apos; to &apos;common/src/main/java/com.kodlamaio.common.utilities.exceptions&apos;&#x0D;&#x0A;- Original project: &apos;paymentService&apos;&#x0D;&#x0A;- Destination element: &apos;common/src/main/java/com.kodlamaio.common.utilities.exceptions&apos;&#x0D;&#x0A;- Original element: &apos;paymentService/src/main/java/com.kodlamaio.paymentService.dataAccess&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move package" destination="=common/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.kodlamaio.common.utilities.exceptions" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.kodlamaio.paymentService.dataAccess" flags="589830" fragments="1" id="org.eclipse.jdt.ui.move" policy="org.eclipse.jdt.ui.movePackages" stamp="1670275694247" version="1.0"/>
+</session>
