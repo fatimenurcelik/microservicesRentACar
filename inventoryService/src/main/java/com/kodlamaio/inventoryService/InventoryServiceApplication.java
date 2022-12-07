@@ -4,7 +4,6 @@ import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 
 import com.kodlamaio.common.utilities.mapping.ModelMapperManager;
@@ -22,7 +21,6 @@ public class InventoryServiceApplication {
 	public ModelMapper getModelMapper() {
 		return new ModelMapper();
 	}
-	
 	@Bean
 	public ModelMapperService getMapperService(ModelMapper modelMapper) {
 		return new ModelMapperManager(modelMapper);

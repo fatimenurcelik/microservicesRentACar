@@ -1,6 +1,6 @@
-  spring:
+spring:
   application:
-    name: stock
+    name: inventory-service
   cloud:
     config:
       profile: dev

@@ -4,16 +4,16 @@
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
-		<item key="selection" value="/spring.kafka.consumer.group-id: inventory2"/>
+		<item key="selection" value="modelmapper"/>
 		<list key="findhistory">
-			<item value="getTotalPrice"/>
-			<item value="carClient"/>
-			<item value="sleut"/>
+			<item value="modelmapper"/>
 			<item value="model"/>
-			<item value="kafkaTemplate"/>
-			<item value="spring-cloud-dependencies"/>
-			<item value="updateCarState"/>
-			<item value="getLogger"/>
+			<item value="clo"/>
+			<item value="cloud-starter"/>
+			<item value="getByModelId"/>
+			<item value="getByCarId"/>
+			<item value="searchByPla"/>
+			<item value="plate"/>
 		</list>
 		<list key="replacehistory">
 		</list>
