@@ -1,0 +1,14 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        default-label: main
+        git:
+          uri: https://github.com/fatimenurcelik/config-server
+  profiles:
+    active: dev
+

@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
+import com.kodlamaio.common.events.BrandDeletedEvent;
+import com.kodlamaio.common.events.BrandUpdatedEvent;
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
 import com.kodlamaio.inventoryService.business.abstracts.BrandService;
@@ -18,6 +20,7 @@ import com.kodlamaio.inventoryService.business.responses.get.GetBrandResponse;
 import com.kodlamaio.inventoryService.business.responses.update.UpdateBrandResponse;
 import com.kodlamaio.inventoryService.dataAccess.BrandRepository;
 import com.kodlamaio.inventoryService.entities.Brand;
+import com.kodlamaio.inventoryService.kafka.FilterProducer;
 
 import lombok.AllArgsConstructor;
 
@@ -26,6 +29,7 @@ import lombok.AllArgsConstructor;
 public class BrandManager implements BrandService{
 	private BrandRepository brandRepository;
 	private ModelMapperService modelMapperService;
+	private FilterProducer filterProducer;
 
 	@Override
 	public List<GetAllBrandsResponse> getAll() {
@@ -60,7 +64,14 @@ public class BrandManager implements BrandService{
 	public UpdateBrandResponse update(UpdateBrandRequest updateRequest) {
 		checkIfBrandExistsById(updateRequest.getId());
 		Brand brand = modelMapperService.forRequest().map(updateRequest, Brand.class);
-		brandRepository.save(brand);
+		Brand temp = brandRepository.save(brand);
+		
+		BrandUpdatedEvent brandUpdatedEvent = modelMapperService.forResponse().map(temp, BrandUpdatedEvent.class);
+		brandUpdatedEvent.setMessage("update brand ");
+		brandUpdatedEvent.setBrandId(temp.getId());
+		
+		this.filterProducer.sendMessage(brandUpdatedEvent);
+		
 		return modelMapperService.forResponse().map(brand, UpdateBrandResponse.class);
 	}
 
@@ -68,6 +79,12 @@ public class BrandManager implements BrandService{
 	public void delete(String id) {
 		checkIfBrandExistsById(id);
 		brandRepository.deleteById(id);
+		
+		BrandDeletedEvent brandEvent = new BrandDeletedEvent();
+		brandEvent.setMessage("deleted Brand");
+		brandEvent.setBrandId(id);
+		
+		this.filterProducer.sendMessage(brandEvent);
 	}
 	
 	/// Public Rules \\\
