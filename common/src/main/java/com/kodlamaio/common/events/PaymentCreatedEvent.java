@@ -9,5 +9,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PaymentCreatedEvent {
 	private String message;
-	private String rentalId;	
+	private String rentalId;
 }

@@ -11,25 +11,22 @@ import com.kodlamaio.invoiceService.entities.Invoice;
 
 import lombok.AllArgsConstructor;
 
-
-
 @Service
 @AllArgsConstructor
-public  class InvoiceManager implements InvoiceService {
-
+public class InvoiceManager implements InvoiceService {
 	private InvoiceRepository invoiceRepository;
 
 	@Override
-	public Invoice add(PaymentCreatedEvent paymentCreatedEvent) {
-		Invoice invoice=new Invoice();
+	public Invoice add(PaymentCreatedEvent event) {
+		Invoice invoice = new Invoice();
 		invoice.setId(UUID.randomUUID().toString());
-		invoice.setRentalId(paymentCreatedEvent.getRentalId());
-		
-		Invoice result= this.invoiceRepository.save(invoice);
+		invoice.setRentalId(event.getRentalId());
+
+		PaymentCreatedEvent createdEvent = new PaymentCreatedEvent();
+		createdEvent.setRentalId(event.getRentalId());
+		createdEvent.setMessage("invoice created");
+
+		Invoice result = this.invoiceRepository.save(invoice);
 		return result;
 	}
-
-
-	
-	
 }

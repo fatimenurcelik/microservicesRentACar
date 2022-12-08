@@ -20,8 +20,8 @@ public class PaymentController {
 	
 	private PaymentService paymentService;
 	
-	@PostMapping()
-	public CreatePaymentResponse add (@Valid @RequestBody PayMoneyRequest createPaymentRequest) {
-		return paymentService.add(createPaymentRequest);
-	}
+//	@PostMapping()
+//	public CreatePaymentResponse add (@Valid @RequestBody PayMoneyRequest createPaymentRequest) {
+//		return paymentService.add(createPaymentRequest);
+//	}
 }

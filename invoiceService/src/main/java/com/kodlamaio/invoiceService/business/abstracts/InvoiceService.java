@@ -5,5 +5,5 @@ import com.kodlamaio.invoiceService.entities.Invoice;
 
 public interface InvoiceService {
 
-	Invoice add(PaymentCreatedEvent paymentCreatedEvent);
+	Invoice add(PaymentCreatedEvent event);
 }

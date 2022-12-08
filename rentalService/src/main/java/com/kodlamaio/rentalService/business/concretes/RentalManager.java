@@ -13,7 +13,6 @@ import com.kodlamaio.common.rentalPayment.PayMoneyRequest;
 import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
 import com.kodlamaio.rentalService.business.abstracts.RentalService;
-import com.kodlamaio.rentalService.business.feignClient.CarClient;
 import com.kodlamaio.rentalService.business.feignClient.PaymentClient;
 import com.kodlamaio.rentalService.business.requests.CreateRentalRequest;
 import com.kodlamaio.rentalService.business.requests.UpdateRentalRequest;
@@ -32,7 +31,6 @@ public class RentalManager implements RentalService {
 	private ModelMapperService modelMapperService;
 	private RentalRepository rentalRepository;
 	private RentalProducer rentalProducer;
-	private CarClient carClient;
 	private PaymentClient paymentClient;
 
 	@Override
@@ -43,7 +41,8 @@ public class RentalManager implements RentalService {
 		Rental rental = modelMapperService.forRequest().map(createRentalRequest, Rental.class);
 		rental.setId(UUID.randomUUID().toString());
 		rental.setTotalPrice(createRentalRequest.getDailyPrice() * createRentalRequest.getRentedForDays());
-
+		rental.setPaymentCondition(0);
+		
 		PayMoneyRequest payMoneyRequest = new PayMoneyRequest();
 		payMoneyRequest.setBalance(createRentalRequest.getBalance());
 		payMoneyRequest.setTotalPrice(rental.getTotalPrice());
